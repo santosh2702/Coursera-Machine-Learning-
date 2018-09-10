@@ -24,7 +24,9 @@ error_val   = zeros(m, 1);
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return training errors in 
 %               error_train and the cross validation errors in error_val. 
-%               i.e., error_train(i) and 
+%               The vector numex_vec contains the number of training 
+%               examples to use for each calculation of training error and 
+%               cross validation error, i.e, error_train(i) and 
 %               error_val(i) should give you the errors
 %               obtained after training on i examples.
 %
@@ -51,16 +53,13 @@ error_val   = zeros(m, 1);
 %       end
 %
 
-% ---------------------- Sample Solution ----------------------
+for i= 1:m
+    theta          = trainLinearReg(X(1:i,:), y(1:i), lambda);
+    error_train(i) = linearRegCostFunction(X(1:i,:)   , y(1:i)   , theta, 0);
+    error_val(i)   = linearRegCostFunction(Xval, yval, theta, 0);
+end
 
-
-
-
-
-
-
-% -------------------------------------------------------------
-
+%
 % =========================================================================
 
 end
